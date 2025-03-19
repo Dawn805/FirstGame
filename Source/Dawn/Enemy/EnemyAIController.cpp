@@ -19,7 +19,7 @@ void AEnemyAIController::BeginPlay()
 	AActor* Player = Cast<AActor>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	if (Player)
 	{
-		MoveToPlyaer(Player);
+		MoveToPlayer(Player);
 	}
 }
 
@@ -29,7 +29,7 @@ void AEnemyAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AEnemyAIController::MoveToPlyaer(AActor* Player)
+void AEnemyAIController::MoveToPlayer(AActor* Player)
 {
 	if (Player)
 	{

@@ -25,5 +25,8 @@ public:
 
 public:
 	UFUNCTION(BlueprintCallable)
-	void MoveToPlyaer(AActor *Player);
+	void MoveToPlayer(AActor *Player);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void Death();
 };

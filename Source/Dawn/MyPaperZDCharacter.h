@@ -83,4 +83,7 @@ public:
 	float MaxMP = 100;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float MP = 100;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float Attack = 10;
 };

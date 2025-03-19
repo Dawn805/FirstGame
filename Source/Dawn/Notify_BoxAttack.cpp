@@ -7,7 +7,10 @@
 
 
 #include "DrawDebugHelpers.h"
+#include "MyPaperZDCharacter.h"
 #include "PaperZDAnimInstance.h"
+#include "PaperZDCharacter.h"
+#include "Enemy/EnemyCharacter.h"
 #include "Engine/OverlapResult.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -30,6 +33,16 @@ void UNotify_BoxAttack::OnReceiveNotify_Implementation(UPaperZDAnimInstance* Ani
 		AActor* OwningActor = AnimInstance->GetOwningActor();
 		if (!OwningActor)return;
 
+		//获得角色的攻击力：
+		float Attack_default = 1.0f;
+		AMyPaperZDCharacter* Player = Cast<AMyPaperZDCharacter>(OwningActor);
+		if (Player)
+		{
+			Attack_default = Player->Attack;
+		}
+		
+		
+
 		TArray<AActor*> Overlaps;
 
 		//第4个参数，需要检测的物体类型
@@ -45,11 +58,11 @@ void UNotify_BoxAttack::OnReceiveNotify_Implementation(UPaperZDAnimInstance* Ani
 		if (SocketName == "No")
 		{
 			Location = SequenceRenderComponent->GetComponentLocation();
-			UKismetSystemLibrary::PrintString(this,"NoSocketName");
+			//UKismetSystemLibrary::PrintString(this,"NoSocketName");
 		}
 		else
 		{
-			UKismetSystemLibrary::PrintString(this,"YesSocketName");
+			//UKismetSystemLibrary::PrintString(this,"YesSocketName");
 		}
 		bool bHit = UKismetSystemLibrary::BoxOverlapActors(
 			//1世界
@@ -75,81 +88,20 @@ void UNotify_BoxAttack::OnReceiveNotify_Implementation(UPaperZDAnimInstance* Ani
 				AActor* OverlapActor = Overlaps[i];
 				if (OverlapActor)
 				{
-					UGameplayStatics::ApplyDamage(OverlapActor,AttackDamage,OwningActor->GetInstigatorController(),OwningActor,nullptr);
-					UKismetSystemLibrary::PrintString(this,"Hit Yes");
+					//UGameplayStatics::ApplyDamage(OverlapActor,AttackDamage,OwningActor->GetInstigatorController(),OwningActor,nullptr);
+					//UKismetSystemLibrary::PrintString(this,"Hit Yes");
+
+					AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(OverlapActor);
+					EnemyCharacter->Health -= AttackDamage * Attack_default;
+
+					UKismetSystemLibrary::PrintString(this,FString::Printf(TEXT("敌人生命值：%.2f"),EnemyCharacter->Health));
 				}
 				else
 				{
-					UKismetSystemLibrary::PrintString(this,"Hit No");
+					//UKismetSystemLibrary::PrintString(this,"Hit No");
 				}
 			}
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// //获得攻击位置
-	// FVector Location = OwningActor->GetActorLocation();
-	// FQuat BoxRotation = FQuat(OwningActor->GetActorRotation());
-	//
-	// //配置碰撞检测
-	// TArray<FOverlapResult> HitResults;
-	// FCollisionQueryParams Params;
-	// Params.AddIgnoredActor(OwningActor);
-	//
-	// //进行Box碰撞检测
-	// bool bHit = OwningActor->GetWorld()->OverlapMultiByChannel(
-	// 	HitResults,
-	// 	Location,
-	// 	BoxRotation,
-	// 	ECC_Pawn,
-	// 	FCollisionShape::MakeBox(BoxExtent),
-	// 	Params);
-	//
-	// if (OwningActor == NULL)
-	// {
-	// 	UWorld* EditorWorld = nullptr;
-	// 	EditorWorld = GEditor->GetEditorWorldContext().World();
-	// 	DrawDebugBox(EditorWorld,Location,BoxExtent,BoxRotation,BoxColor,true,5.0f,0,2.0f);
-	// 	return;
-	// }
-	//
-	// //处理检测结果
-	// if (bHit)
-	// {
-	// 	for (int i = 0; i < HitResults.Num(); i++)
-	// 	{
-	// 		AActor* HitActor = HitResults[i].GetActor();
-	// 		if (HitActor)
-	// 		{
-	// 			//造成伤害
-	// 			UGameplayStatics::ApplyDamage(HitActor,AttackDamage,OwningActor->GetInstigatorController(),OwningActor,nullptr);
-	//
-	// 			//检测伤害（后面删掉）
-	// 			UKismetSystemLibrary::PrintString(this,"Hit Yes");
-	// 		}
-	// 	}
-	// }
-	// //这个也是后面删
-	// else
-	// {
-	// 	UKismetSystemLibrary::PrintString(this,"No Hit");
-	// }
-	//
-	// //绘制Debug Box
-	// DrawDebugBox(OwningActor->GetWorld(),Location,BoxExtent,BoxRotation,BoxColor,true,5.0f,0,2.0f);
 }
 
