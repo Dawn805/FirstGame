@@ -3,17 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PaperCharacter.h"
-#include "MyCharacter.generated.h"
+#include "PaperZDCharacter.h"
+#include "EnemyCharacter.generated.h"
 
 UCLASS()
-class DAWN_API AMyCharacter : public APaperCharacter
+class DAWN_API AEnemyCharacter : public APaperZDCharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	AMyCharacter();
+	AEnemyCharacter();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,8 +26,17 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UFUNCTION()
-	void MoveRight(float value);
+
+public:
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float MaxHealth;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float Health;
+
 	UFUNCTION()
 	void MoveJump();
+
+	// UFUNCTION()
+	// void MoveRight(float value);
 };

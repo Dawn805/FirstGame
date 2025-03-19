@@ -8,7 +8,7 @@ public class Dawn : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Paper2D" ,"PaperZD" ,"UnrealEd" ,"UMG" ,"SlateCore"});
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Paper2D" ,"PaperZD" ,"UnrealEd" ,"UMG" ,"SlateCore","AIModule"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
