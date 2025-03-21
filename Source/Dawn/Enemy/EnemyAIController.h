@@ -24,9 +24,17 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	UFUNCTION(BlueprintCallable)
-	void MoveToPlayer(AActor *Player);
+	// UFUNCTION(BlueprintCallable)
+	// void MoveToPlayer(AActor *Player);
 
-	UFUNCTION(BlueprintImplementableEvent)
-	void Death();
+	// UFUNCTION(BlueprintImplementableEvent)
+	// void Death();
+
+
+public:
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="AI")
+	UBehaviorTree* BehaviorTree;
+
+	UFUNCTION()
+	void RunAI();
 };

@@ -16,11 +16,13 @@ void AEnemyAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	AActor* Player = Cast<AActor>(GetWorld()->GetFirstPlayerController()->GetPawn());
-	if (Player)
-	{
-		MoveToPlayer(Player);
-	}
+	RunAI();
+	//
+	// AActor* Player = Cast<AActor>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	// if (Player)
+	// {
+	// 	MoveToPlayer(Player);
+	// }
 }
 
 // Called every frame
@@ -29,12 +31,18 @@ void AEnemyAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AEnemyAIController::MoveToPlayer(AActor* Player)
+// void AEnemyAIController::MoveToPlayer(AActor* Player)
+// {
+// 	if (Player)
+// 	{
+// 		MoveToActor(Player,10.0f);
+// 	}
+// }
+
+void AEnemyAIController::RunAI()
 {
-	if (Player)
-	{
-		MoveToActor(Player,10.0f);
-	}
+	RunBehaviorTree(BehaviorTree);
 }
+
 
 
