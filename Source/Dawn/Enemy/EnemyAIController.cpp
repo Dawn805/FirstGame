@@ -3,6 +3,11 @@
 
 #include "EnemyAIController.h"
 
+#include "BehaviorTree/BlackboardComponent.h"
+#include "Dawn/MyPaperZDCharacter.h"
+#include "Dawn/MyPlayerController.h"
+#include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 AEnemyAIController::AEnemyAIController()
@@ -17,12 +22,23 @@ void AEnemyAIController::BeginPlay()
 	Super::BeginPlay();
 
 	RunAI();
-	//
-	// AActor* Player = Cast<AActor>(GetWorld()->GetFirstPlayerController()->GetPawn());
-	// if (Player)
-	// {
-	// 	MoveToPlayer(Player);
-	// }
+
+	APlayerController *PlayerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
+	AMyPlayerController *MyPlayerController = Cast<AMyPlayerController>(PlayerController);
+	if (MyPlayerController)
+	{
+		ACharacter *FCharacter = MyPlayerController->GetCharacter();
+		AMyPaperZDCharacter *PlayerCharacter = Cast<AMyPaperZDCharacter>(FCharacter);
+		if (PlayerCharacter)
+		{
+			UBlackboardComponent *BlackboardComponent = GetBlackboardComponent();
+			if (BlackboardComponent)
+			{
+				BlackboardComponent->SetValueAsObject("PlayerCharacter",PlayerCharacter);
+			}
+		}
+	}
+	
 }
 
 // Called every frame

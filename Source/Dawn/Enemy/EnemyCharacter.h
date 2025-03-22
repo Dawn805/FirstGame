@@ -40,4 +40,10 @@ public:
 
 	UFUNCTION(BlueprintCallable,Category="Movement")
 	void UpdateWalkSpeed(float NewWalkSpeed);
+
+	// UFUNCTION(BlueprintCallable,Category="Movement")
+	// void UpdateFacing();
+	//
+	// UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	// FTimerHandle Time_UpdateFacing;
 };
