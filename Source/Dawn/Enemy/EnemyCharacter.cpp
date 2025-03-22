@@ -3,6 +3,8 @@
 
 #include "EnemyCharacter.h"
 
+#include "GameFramework/CharacterMovementComponent.h"
+
 
 // Sets default values
 AEnemyCharacter::AEnemyCharacter()
@@ -35,11 +37,13 @@ void AEnemyCharacter::MoveJump()
 	Super::Jump();
 }
 
-// void AEnemyCharacter::MoveRight(float value)
-// {
-// 	if (value != 0.0f)
-// 	{
-// 		
-// 	}
-// }
+void AEnemyCharacter::UpdateWalkSpeed(float NewWalkSpeed)
+{
+	UCharacterMovementComponent* CharMovement = GetCharacterMovement();
+	if (CharMovement)
+	{
+		CharMovement->MaxWalkSpeed = NewWalkSpeed;
+	}
+}
+
 

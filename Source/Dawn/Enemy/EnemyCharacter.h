@@ -37,6 +37,7 @@ public:
 	UFUNCTION()
 	void MoveJump();
 
-	// UFUNCTION()
-	// void MoveRight(float value);
+
+	UFUNCTION(BlueprintCallable,Category="Movement")
+	void UpdateWalkSpeed(float NewWalkSpeed);
 };
