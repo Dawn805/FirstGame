@@ -3,6 +3,8 @@
 
 #include "EnemyCharacter.h"
 
+#include "PaperFlipbookComponent.h"
+#include "PaperZDAnimInstance.h"
 #include "Dawn/MyPaperZDCharacter.h"
 #include "Dawn/MyPlayerController.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -22,6 +24,17 @@ void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Health_sub = Health;
+
+	GetSprite()->SetFlipbook(nullptr);
+
+	UPaperZDAnimInstance* FAnimInstance = GetAnimInstance();
+	if (FAnimInstance)
+	{
+		FAnimInstance->JumpToNode("Hurt", "Orc_Locomotion");
+	}
+
+
 	// GetWorldTimerManager().SetTimer(
 	// 	Time_UpdateFacing,               
 	// 	FTimerDelegate::CreateUObject(this, &AEnemyCharacter::UpdateFacing), 
@@ -34,6 +47,11 @@ void AEnemyCharacter::BeginPlay()
 void AEnemyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (Health != Health_sub && !bIsInHurtState)
+	{
+		HealthChange();
+	}
 }
 
 // Called to bind functionality to input
@@ -55,6 +73,20 @@ void AEnemyCharacter::UpdateWalkSpeed(float NewWalkSpeed)
 		CharMovement->MaxWalkSpeed = NewWalkSpeed;
 	}
 }
+
+void AEnemyCharacter::HealthChange()
+{
+	UPaperZDAnimInstance* FAnimInstance = GetAnimInstance();
+	if (FAnimInstance)
+	{
+		HealthChange_PlayAnimation();
+		bIsInHurtState = true;
+	}
+	Health_sub = Health;
+}
+
+
+
 
 // void AEnemyCharacter::UpdateFacing()
 // {

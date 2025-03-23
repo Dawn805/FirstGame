@@ -41,6 +41,25 @@ public:
 	UFUNCTION(BlueprintCallable,Category="Movement")
 	void UpdateWalkSpeed(float NewWalkSpeed);
 
+
+	UFUNCTION(BlueprintCallable)
+	void HealthChange();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HealthChange_PlayAnimation();
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float Health_sub;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	bool AnimRight = true;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPaperFlipbookComponent *Flipbook;
+
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	bool bIsInHurtState = false;
+
 	// UFUNCTION(BlueprintCallable,Category="Movement")
 	// void UpdateFacing();
 	//
