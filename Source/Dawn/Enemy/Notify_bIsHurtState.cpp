@@ -15,7 +15,7 @@ void UNotify_bIsHurtState::OnNotifyBegin_Implementation(UPaperZDAnimInstance* Ow
 	AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(FCharacter);
 	if (EnemyCharacter)
 	{
-		EnemyCharacter->bIsInHurtState = true;
+		EnemyCharacter->bIsInHurtState = false;
 	}
 }
 

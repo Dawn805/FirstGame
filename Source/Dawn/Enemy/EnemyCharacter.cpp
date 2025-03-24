@@ -27,12 +27,12 @@ void AEnemyCharacter::BeginPlay()
 	Health_sub = Health;
 
 	GetSprite()->SetFlipbook(nullptr);
-
-	UPaperZDAnimInstance* FAnimInstance = GetAnimInstance();
-	if (FAnimInstance)
-	{
-		FAnimInstance->JumpToNode("Hurt", "Orc_Locomotion");
-	}
+	
+	// UPaperZDAnimInstance* FAnimInstance = GetAnimInstance();
+	// if (FAnimInstance)
+	// {
+	// 	FAnimInstance->JumpToNode("Hurt", "Orc_Locomotion");
+	// }
 
 
 	// GetWorldTimerManager().SetTimer(
