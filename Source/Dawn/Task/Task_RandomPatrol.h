@@ -4,21 +4,24 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "Task_ChasePlayer.generated.h"
+#include "Task_RandomPatrol.generated.h"
 
 /**
  * 
  */
-UCLASS(BlueprintType)
-class DAWN_API UTask_ChasePlayer : public UBTTaskNode
+UCLASS(Blueprintable)
+class DAWN_API UTask_RandomPatrol : public UBTTaskNode
 {
 	GENERATED_BODY()
 
 public:
-	UTask_ChasePlayer();
+	UTask_RandomPatrol();
 
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	float Velocity = 30.0f;
+	float PatrolRadius = 1000.0f;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FBlackboardKeySelector PatrolLoaction;
 };
