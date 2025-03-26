@@ -24,4 +24,7 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FBlackboardKeySelector PatrolLoaction;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float PatrolSpeed = 10.0f;
 };

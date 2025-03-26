@@ -54,11 +54,17 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	bool AnimRight = true;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	UPaperFlipbookComponent *Flipbook;
+	// UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	// UPaperFlipbookComponent *Flipbook;
 
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	bool bIsInHurtState = false;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float Attack = 10.0f;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	bool bIsAttacking = false;
 
 	// UFUNCTION(BlueprintCallable,Category="Movement")
 	// void UpdateFacing();

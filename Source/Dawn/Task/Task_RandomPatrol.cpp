@@ -7,6 +7,7 @@
 #include "NavigationSystem.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Dawn/Enemy/EnemyCharacter.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 UTask_RandomPatrol::UTask_RandomPatrol()
 {
@@ -22,6 +23,7 @@ EBTNodeResult::Type UTask_RandomPatrol::ExecuteTask(UBehaviorTreeComponent& Owne
 	if (!AIPawn) return EBTNodeResult::Failed;
 
 	AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(AIPawn);
+	if (EnemyCharacter) EnemyCharacter->GetCharacterMovement()->MaxWalkSpeed = PatrolSpeed;
 
 	FVector EnemyOrigin = EnemyCharacter->GetActorLocation();
 

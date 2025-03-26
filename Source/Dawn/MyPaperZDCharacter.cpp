@@ -5,6 +5,7 @@
 
 #include "IDetailTreeNode.h"
 #include "MyGameMode.h"
+#include "PaperFlipbookComponent.h"
 #include "AnimSequences/PaperZDAnimSequence.h"
 #include "PaperZDAnimInstance.h"
 #include "Actor/Item.h"

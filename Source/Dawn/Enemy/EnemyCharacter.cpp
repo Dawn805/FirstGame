@@ -5,6 +5,7 @@
 
 #include "PaperFlipbookComponent.h"
 #include "PaperZDAnimInstance.h"
+#include "Components/CapsuleComponent.h"
 #include "Dawn/MyPaperZDCharacter.h"
 #include "Dawn/MyPlayerController.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -16,7 +17,13 @@ AEnemyCharacter::AEnemyCharacter()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	GetCharacterMovement()->bUseControllerDesiredRotation = false;
+	bUseControllerRotationYaw = false;
 	
+	GetCapsuleComponent()->BodyInstance.bLockXRotation = true;
+	GetCapsuleComponent()->BodyInstance.bLockYRotation = true;
+	GetCapsuleComponent()->BodyInstance.bLockZRotation = true;
 }
 
 // Called when the game starts or when spawned
@@ -51,6 +58,15 @@ void AEnemyCharacter::Tick(float DeltaTime)
 	if (Health != Health_sub && !bIsInHurtState)
 	{
 		HealthChange();
+	}
+	
+	FVector Velocity = GetVelocity();
+	if (FMath::Abs(Velocity.X) > 0)
+	{
+		float Scalex;
+		if (Velocity.X > 0) Scalex = 1;
+		else if (Velocity.X < 0) Scalex = -1;
+		GetSprite()->SetRelativeScale3D(FVector(Scalex,1,1));
 	}
 }
 
