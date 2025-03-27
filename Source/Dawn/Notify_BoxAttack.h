@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "CoreMinimal.h" 
 #include "PaperZDAnimNotify.h"
 #include "Notify_BoxAttack.generated.h"
 

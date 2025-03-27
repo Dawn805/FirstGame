@@ -8,7 +8,7 @@
 #include "Dawn/MyPaperZDCharacter.h"
 #include "Kismet/GameplayStatics.h"
 
-void UNotify_EnemyAttackDamage::OnReceiveNotify_Implementation(UPaperZDAnimInstance* AnimInstance)
+void UNotify_EnemyAttackDamage::OnReceiveNotify_Implementation(UPaperZDAnimInstance* AnimInstance) const
 {
 	if (!AnimInstance)
 	{
@@ -22,7 +22,7 @@ void UNotify_EnemyAttackDamage::OnReceiveNotify_Implementation(UPaperZDAnimInsta
 		if (!OwningActor) return;
 		AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(OwningActor);
 		if (!EnemyCharacter) return;
-		AttackDamge = EnemyCharacter->Attack;
+ 		float FAttackDamge = EnemyCharacter->Attack;
 
 		//2
 		FVector Location;
@@ -66,7 +66,7 @@ void UNotify_EnemyAttackDamage::OnReceiveNotify_Implementation(UPaperZDAnimInsta
 					AMyPaperZDCharacter* PlayerCharacter = Cast<AMyPaperZDCharacter>(OverlapActor);
 					if (PlayerCharacter)
 					{
-						PlayerCharacter->Health -= AttackDamge * EnemyCharacter->Attack;
+						PlayerCharacter->Health -= FAttackDamge * EnemyCharacter->Attack;
 
 						UKismetSystemLibrary::PrintString(this,"wanjia bei da dao le");
 					}

@@ -63,8 +63,8 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float Attack = 10.0f;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	bool bIsAttacking = false;
+	// UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	// bool bIsAttacking = false;
 
 	// UFUNCTION(BlueprintCallable,Category="Movement")
 	// void UpdateFacing();

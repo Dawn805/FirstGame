@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PaperZDAnimNotifyState.h"
+#include "PaperZDAnimNotify.h"
 
 #include "Notify_EnemyAttackDamage.generated.h"
 
@@ -11,15 +11,15 @@
  * 
  */
 UCLASS()
-class DAWN_API UNotify_EnemyAttackDamage : public UPaperZDAnimNotifyState
+class DAWN_API UNotify_EnemyAttackDamage : public UPaperZDAnimNotify
 {
 	GENERATED_BODY()
 	
-	void OnReceiveNotify_Implementation(UPaperZDAnimInstance* AnimInstance);
+	void OnReceiveNotify_Implementation(UPaperZDAnimInstance* AnimInstance) const;
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float AttackDamge = 10.0f;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	// float AttackDamge = 10.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector BoxExtent = FVector(10,10,10);
