@@ -3,6 +3,8 @@
 
 #include "EnemyCharacter.h"
 
+#include "AIController.h"
+#include "BrainComponent.h"
 #include "PaperFlipbookComponent.h"
 #include "PaperZDAnimInstance.h"
 #include "Components/CapsuleComponent.h"
@@ -55,7 +57,7 @@ void AEnemyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (Health != Health_sub && !bIsInHurtState)
+	if (Health != Health_sub && !bIsInHurtState && Health > 0)
 	{
 		HealthChange();
 	}
@@ -99,6 +101,24 @@ void AEnemyCharacter::HealthChange()
 		bIsInHurtState = true;
 	}
 	Health_sub = Health;
+}
+
+void AEnemyCharacter::EndAI()
+{
+	AAIController* FAIController = Cast<AAIController>(GetController());
+	if (FAIController && FAIController->GetBrainComponent())
+	{
+		FAIController->GetBrainComponent()->StopLogic("Died");
+	}
+}
+
+void AEnemyCharacter::BeginAI()
+{
+	AAIController* FAIController = Cast<AAIController>(GetController());
+	if (FAIController && FAIController->GetBrainComponent())
+	{
+		FAIController->GetBrainComponent()->RestartLogic();
+	}
 }
 
 

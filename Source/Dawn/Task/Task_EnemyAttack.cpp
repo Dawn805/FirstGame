@@ -39,6 +39,7 @@ EBTNodeResult::Type UTask_EnemyAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 	if (!PlayerActor) return EBTNodeResult::Failed;
 	
 	float Distance = FVector::Dist(EnemyCharacter->GetActorLocation(),PlayerActor->GetActorLocation());
+	Distance = FMath::Abs(Distance);
 	if (Distance <= AttackRange)
 	{
 		UKismetSystemLibrary::PrintString(this,"YesAttack");

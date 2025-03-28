@@ -63,6 +63,17 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float Attack = 10.0f;
 
+
+
+
+	//关闭行为树
+	UFUNCTION(BlueprintCallable)
+	void EndAI();
+
+	//开启行为树
+	UFUNCTION(Blueprintable)
+	void BeginAI();
+
 	// UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	// bool bIsAttacking = false;
 

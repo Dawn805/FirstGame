@@ -94,6 +94,8 @@ void UNotify_BoxAttack::OnReceiveNotify_Implementation(UPaperZDAnimInstance* Ani
 					AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(OverlapActor);
 					EnemyCharacter->Health -= AttackDamage * Attack_default;
 
+					if (EnemyCharacter->Health <= 0) EnemyCharacter->EndAI();
+
 					UKismetSystemLibrary::PrintString(this,FString::Printf(TEXT("敌人生命值：%.2f"),EnemyCharacter->Health));
 				}
 				else
