@@ -9,6 +9,7 @@
 void UPlayerStateWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
+
 	Update();
 }
 

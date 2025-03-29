@@ -57,6 +57,7 @@ void AMyPaperZDCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+//移动
 void AMyPaperZDCharacter::MoveRight(float value)
 {
 	if (Controller&&value != 0.0f)

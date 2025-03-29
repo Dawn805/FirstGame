@@ -66,7 +66,7 @@ void UNotify_EnemyAttackDamage::OnReceiveNotify_Implementation(UPaperZDAnimInsta
 					AMyPaperZDCharacter* PlayerCharacter = Cast<AMyPaperZDCharacter>(OverlapActor);
 					if (PlayerCharacter)
 					{
-						PlayerCharacter->Health -= FAttackDamge * EnemyCharacter->Attack;
+						PlayerCharacter->HP -= FAttackDamge * EnemyCharacter->Attack;
 
 						UKismetSystemLibrary::PrintString(this,"wanjia bei da dao le");
 					}

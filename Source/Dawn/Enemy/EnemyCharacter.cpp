@@ -57,7 +57,7 @@ void AEnemyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (Health != Health_sub && !bIsInHurtState && Health > 0)
+	if (Health != Health_sub && Health > 0)
 	{
 		HealthChange();
 	}
@@ -69,6 +69,24 @@ void AEnemyCharacter::Tick(float DeltaTime)
 		if (Velocity.X > 0) Scalex = 1;
 		else if (Velocity.X < 0) Scalex = -1;
 		GetSprite()->SetRelativeScale3D(FVector(Scalex,1,1));
+	}
+
+	if (this->bIsInAttack == true)
+	{
+		AMyPaperZDCharacter* PlayerCharacter = Cast<AMyPaperZDCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(),0));
+		if (!PlayerCharacter) return;
+
+		FVector ToPlayer = PlayerCharacter->GetActorLocation() - this->GetActorLocation();
+		ToPlayer.Normalize();
+		FVector Forward = this->GetActorForwardVector();
+
+		float Dot = FVector::DotProduct(Forward, ToPlayer);
+
+		float ScaleX;
+		
+		if (Dot > 0) ScaleX = 1;
+		else if (Dot < 0) ScaleX = -1;
+		GetSprite()->SetRelativeScale3D(FVector(ScaleX,1,1));
 	}
 }
 
@@ -98,7 +116,6 @@ void AEnemyCharacter::HealthChange()
 	if (FAnimInstance)
 	{
 		HealthChange_PlayAnimation();
-		bIsInHurtState = true;
 	}
 	Health_sub = Health;
 }

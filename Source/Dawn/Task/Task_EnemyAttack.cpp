@@ -40,6 +40,12 @@ EBTNodeResult::Type UTask_EnemyAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 	
 	float Distance = FVector::Dist(EnemyCharacter->GetActorLocation(),PlayerActor->GetActorLocation());
 	Distance = FMath::Abs(Distance);
+
+	// FVector ToPlayer = PlayerActor->GetActorLocation() - EnemyCharacter->GetActorLocation();
+	// ToPlayer.Normalize();
+	// FVector Forward = EnemyCharacter->GetActorForwardVector();
+	// float Dot = FVector::DotProduct(Forward,ToPlayer);
+	
 	if (Distance <= AttackRange)
 	{
 		UKismetSystemLibrary::PrintString(this,"YesAttack");

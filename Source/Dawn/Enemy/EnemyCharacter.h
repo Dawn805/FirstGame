@@ -54,11 +54,16 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	bool AnimRight = true;
 
-	// UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	// UPaperFlipbookComponent *Flipbook;
 
-	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	bool bIsInHurtState = false;
+	//用来判断是否受到攻击，受到攻击先不改怪物方向
+	// UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	// bool bIsInHurtState = false;
+
+
+	//判断角色是否在攻击，攻击中可以改变朝向
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	bool bIsInAttack = false;
+	
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float Attack = 10.0f;
