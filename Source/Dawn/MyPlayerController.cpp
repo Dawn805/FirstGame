@@ -15,16 +15,21 @@ void AMyPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (!PlayerStateWidgetClass)
+	if (PlayerStateWidgetClass)
 	{
-		return;
+		UPlayerStateWidget* Widget = CreateWidget<UPlayerStateWidget>(this, PlayerStateWidgetClass);
+		if (Widget)
+		{
+			Widget->MainPlayerController = this;
+			Widget->AddToViewport();
+		}
 	}
 	
-	if (!PlayerStateWidgetInstance)
-	{
-		PlayerStateWidgetInstance = CreateWidget<UPlayerStateWidget>(GetWorld(), PlayerStateWidgetClass);
-		if (PlayerStateWidgetInstance) PlayerStateWidgetInstance->AddToViewport();
-	}
+	// if (!PlayerStateWidgetInstance)
+	// {
+	// 	PlayerStateWidgetInstance = CreateWidget<UPlayerStateWidget>(GetWorld(), PlayerStateWidgetClass);
+	// 	if (PlayerStateWidgetInstance) PlayerStateWidgetInstance->AddToViewport();
+	// }
 }
 
 void AMyPlayerController::Tick(float DeltaSeconds)

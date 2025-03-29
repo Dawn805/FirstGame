@@ -15,17 +15,11 @@ void UPlayerStateWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTi
 
 void UPlayerStateWidget::Update()
 {
-	if (!MainPlayerController)
-	{
-		return;
-	}
+	if (!MainPlayerController) return;
 	
 	MainPaperZDCharacter = Cast<AMyPaperZDCharacter>(MainPlayerController->GetCharacter());
 
-	if (!MainPaperZDCharacter)
-	{
-		return;
-	}
+	if (!MainPaperZDCharacter) return;
 	
 	if (MainPlayerController)
 	{

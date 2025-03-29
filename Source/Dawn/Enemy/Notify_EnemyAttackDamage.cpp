@@ -68,6 +68,8 @@ void UNotify_EnemyAttackDamage::OnReceiveNotify_Implementation(UPaperZDAnimInsta
 					{
 						PlayerCharacter->HP -= FAttackDamge * EnemyCharacter->Attack;
 
+						UKismetSystemLibrary::PrintString(this,FString::Printf(TEXT("Now Player HP:%.2f"),PlayerCharacter->HP));
+
 						UKismetSystemLibrary::PrintString(this,"wanjia bei da dao le");
 					}
 				}
