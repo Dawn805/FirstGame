@@ -31,32 +31,46 @@ public:
 	UPROPERTY(Transient)
 	AMyPaperZDCharacter* MainPaperZDCharacter;
 
-	
-	//生命的背景图片
-	UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
-	UImage* HealthBackgroundImage;
-	//生命的图片
-	UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
-	UImage* HealthImage;
-	//生命的进度条，ProgressBar->进度条
-	// UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
-	// UProgressBar* HealthProgressBar;
-	//设置生命的最大宽度
-	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	float MaxHealthBarWidth = 200.0f;
+	//血量进度条
+	UPROPERTY(meta = (BindWidget))
+	UProgressBar* HPBar;
 
-	//蓝的背景图片
-	UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
-	UImage* MagicBackgroundImage;
-	//蓝的图片
-	UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
-	UImage* MagicImage;
-	//蓝的进度条
+	//蓝
+	UPROPERTY(meta = (BindWidget))
+	UProgressBar* MPBar;
+
+
+
+
+
+	
+
+	
+	// //生命的背景图片
 	// UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
-	// UProgressBar* MagicProgressBar;
-	//设置蓝的最大宽度
-	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	float MaxMagicBarWidth = 200.0f;
+	// UImage* HealthBackgroundImage;
+	// //生命的图片
+	// UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
+	// UImage* HealthImage;
+	// //生命的进度条，ProgressBar->进度条
+	// // UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
+	// // UProgressBar* HealthProgressBar;
+	// //设置生命的最大宽度
+	// UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	// float MaxHealthBarWidth = 200.0f;
+	//
+	// //蓝的背景图片
+	// UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
+	// UImage* MagicBackgroundImage;
+	// //蓝的图片
+	// UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
+	// UImage* MagicImage;
+	// //蓝的进度条
+	// // UPROPERTY(BlueprintReadWrite,EditAnywhere,meta = (BindWidget))
+	// // UProgressBar* MagicProgressBar;
+	// //设置蓝的最大宽度
+	// UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	// float MaxMagicBarWidth = 200.0f;
 
 	//更新
 	UFUNCTION(BlueprintCallable)
