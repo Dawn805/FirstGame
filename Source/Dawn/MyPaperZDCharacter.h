@@ -106,4 +106,10 @@ public:
 	{
 		bAttack_J[1] = false;
 	}
+
+	UFUNCTION(BlueprintCallable)
+	void Attack_I();
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FName Attack_IAnimNodeName = "Attack_I";
 };

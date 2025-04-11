@@ -38,6 +38,8 @@ public:
 	UInputAction* Attack_UAction;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UInputAction* Attack_JAction;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UInputAction* Attack_IAction;
 	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UInputAction* OpenBackpackAction;
@@ -49,6 +51,7 @@ public:
 	
 	void BroadCastAttack_U(const struct FInputActionInstance& Instance);
 	void BroadCastAttack_J(const struct FInputActionInstance& Instance);
+	void BroadCastAttack_I(const struct FInputActionInstance& Instance);
 	
 	void BroadCastOpenBackpack(const struct FInputActionInstance& Instance);
 	void OpenSettingUI(const struct FInputActionInstance& Instance);

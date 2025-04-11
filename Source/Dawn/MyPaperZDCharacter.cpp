@@ -46,6 +46,7 @@ void AMyPaperZDCharacter::BeginPlay()
 		GameMode->Attack_U.AddDynamic(this,&AMyPaperZDCharacter::Attack_U);
 		GameMode->OpenBackpack.AddDynamic(this,&AMyPaperZDCharacter::OpenBackpack);
 		GameMode->Attack_J.AddDynamic(this,&AMyPaperZDCharacter::Attack_J);
+		GameMode->Attack_I.AddDynamic(this,&AMyPaperZDCharacter::Attack_I);
 	}
 }
 
@@ -133,20 +134,20 @@ void AMyPaperZDCharacter::Attack_J()
 
 	UKismetSystemLibrary::PrintString(this,"PLayerAnim_J is Ok");
 	
-	if (bAttack_J[1] == true)
+	if (bAttack_J[1] == true && AnimRight == true)
 	{
-		PaperZdAnimInstance->JumpToNode(Attack_J_3AnimNodeName,StateMachineName);
 		for (int i = 0 ; i < bAttack_J.Num() ; i++)
-		{
-			bAttack_J[i] = false;
-		}
-
+     		{
+     			bAttack_J[i] = false;
+     		}
+		PaperZdAnimInstance->JumpToNode(Attack_J_3AnimNodeName,StateMachineName);
 		UKismetSystemLibrary::PrintString(this,"J_3 is Ok");
 		
 		return;
 	}
-	if (bAttack_J[0] == true)
+	if (bAttack_J[0] == true && AnimRight == true)
 	{
+		bAttack_J[0] = false;
 		PaperZdAnimInstance->JumpToNode(Attack_J_2AnimNodeName,StateMachineName);
 		bAttack_J[1] = true;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&AMyPaperZDCharacter::ChangebAttack_J_2,2,false);
@@ -156,13 +157,31 @@ void AMyPaperZDCharacter::Attack_J()
 		return;
 	}
 
-	PaperZdAnimInstance->JumpToNode(Attack_J_1AnimNodeName,StateMachineName);
-	bAttack_J[0] = true;
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&AMyPaperZDCharacter::ChangebAttack_J_1,2,false);
+	if (AnimRight == true)
+	{
+		PaperZdAnimInstance->JumpToNode(Attack_J_1AnimNodeName,StateMachineName);
+		bAttack_J[0] = true;
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&AMyPaperZDCharacter::ChangebAttack_J_1,2,false);
+	}
 
 	UKismetSystemLibrary::PrintString(this,"J_1 is Ok");
 }
 
+void AMyPaperZDCharacter::Attack_I()
+{
+	AMyPlayerController* PlayerController = Cast<AMyPlayerController>(this->GetController());
+	if (!PlayerController) return;
+
+	UPaperZDAnimInstance* PaperZDAnimInstance = this->GetAnimInstance();
+	if (!PaperZDAnimInstance) return;
+
+	if (AnimRight == false) return;
+
+	float SpeedY = this->GetVelocity().Y;
+	if (SpeedY != 0) return;
+
+	PaperZDAnimInstance->JumpToNode(Attack_IAnimNodeName,StateMachineName);
+}
 
 
 

@@ -80,7 +80,9 @@ void AMyPlayerController::SetupInputComponent()
 			EnhancedInput->BindAction(Attack_UAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastAttack_U);
 		if (Attack_JAction)
 			EnhancedInput->BindAction(Attack_JAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastAttack_J);
-
+		if (Attack_IAction)
+			EnhancedInput->BindAction(Attack_IAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastAttack_I);
+		
 		if (OpenBackpackAction)
 			EnhancedInput->BindAction(OpenBackpackAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastOpenBackpack);
 		if (OpenSettingAction)
@@ -163,6 +165,20 @@ void AMyPlayerController::BroadCastAttack_J(const struct FInputActionInstance& I
 		}
 	}
 }
+
+void AMyPlayerController::BroadCastAttack_I(const struct FInputActionInstance& Instance)
+{
+	AMyGameMode* GameMode = Cast<AMyGameMode>(GetWorld()->GetAuthGameMode());
+
+	if (GameMode)
+	{
+		if (GameMode->Attack_I.IsBound())
+		{
+			GameMode->Attack_I.Broadcast();
+		}
+	}
+}
+
 
 
 
