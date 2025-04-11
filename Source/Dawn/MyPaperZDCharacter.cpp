@@ -5,6 +5,7 @@
 
 #include "IDetailTreeNode.h"
 #include "MyGameMode.h"
+#include "MyPlayerController.h"
 #include "PaperFlipbookComponent.h"
 #include "AnimSequences/PaperZDAnimSequence.h"
 #include "PaperZDAnimInstance.h"
@@ -35,6 +36,8 @@ void AMyPaperZDCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	bAttack_J.Init(false,2);
+	
 	AMyGameMode* GameMode = Cast<AMyGameMode>(GetWorld()->GetAuthGameMode());
 	if (GameMode)
 	{
@@ -42,6 +45,7 @@ void AMyPaperZDCharacter::BeginPlay()
 		GameMode->JumpEvent.AddDynamic(this,&AMyPaperZDCharacter::MoveJump);
 		GameMode->Attack_U.AddDynamic(this,&AMyPaperZDCharacter::Attack_U);
 		GameMode->OpenBackpack.AddDynamic(this,&AMyPaperZDCharacter::OpenBackpack);
+		GameMode->Attack_J.AddDynamic(this,&AMyPaperZDCharacter::Attack_J);
 	}
 }
 
@@ -55,6 +59,8 @@ void AMyPaperZDCharacter::Tick(float DeltaTime)
 void AMyPaperZDCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	
 }
 
 //移动
@@ -115,6 +121,48 @@ void AMyPaperZDCharacter::OpenBackpack()
 		}
 	}
 }
+void AMyPaperZDCharacter::Attack_J()
+{
+	AMyPlayerController* PlayerController = Cast<AMyPlayerController>(this->GetController());
+	if (!PlayerController) return;
+
+	UKismetSystemLibrary::PrintString(this,"Key_J is Ok");
+	
+	UPaperZDAnimInstance* PaperZdAnimInstance = this->GetAnimInstance();
+	if (!PaperZdAnimInstance) return;
+
+	UKismetSystemLibrary::PrintString(this,"PLayerAnim_J is Ok");
+	
+	if (bAttack_J[1] == true)
+	{
+		PaperZdAnimInstance->JumpToNode(Attack_J_3AnimNodeName,StateMachineName);
+		for (int i = 0 ; i < bAttack_J.Num() ; i++)
+		{
+			bAttack_J[i] = false;
+		}
+
+		UKismetSystemLibrary::PrintString(this,"J_3 is Ok");
+		
+		return;
+	}
+	if (bAttack_J[0] == true)
+	{
+		PaperZdAnimInstance->JumpToNode(Attack_J_2AnimNodeName,StateMachineName);
+		bAttack_J[1] = true;
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&AMyPaperZDCharacter::ChangebAttack_J_2,2,false);
+
+		UKismetSystemLibrary::PrintString(this,"J_2 is Ok");
+	
+		return;
+	}
+
+	PaperZdAnimInstance->JumpToNode(Attack_J_1AnimNodeName,StateMachineName);
+	bAttack_J[0] = true;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&AMyPaperZDCharacter::ChangebAttack_J_1,2,false);
+
+	UKismetSystemLibrary::PrintString(this,"J_1 is Ok");
+}
+
 
 
 

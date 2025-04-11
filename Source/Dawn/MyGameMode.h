@@ -11,6 +11,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMoveRightEvent,float,value);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FJumpEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAttack_U);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOpenBackpack);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAttack_J);
 
 /**
  * 
@@ -31,4 +32,6 @@ class DAWN_API AMyGameMode : public AGameModeBase
 	FAttack_U Attack_U;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="OpenBackpack")
 	FOpenBackpack OpenBackpack;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FAttack_J Attack_J;
 };

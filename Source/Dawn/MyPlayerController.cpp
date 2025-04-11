@@ -10,6 +10,7 @@
 #include "MyGameMode.h"
 #include "MyPaperZDCharacter.h"
 #include "PaperFlipbookComponent.h"
+#include "PaperZDAnimInstance.h"
 #include "DataInterface/NiagaraDataInterfaceActorComponent.h"
 #include "GameFramework/Character.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -18,6 +19,7 @@
 void AMyPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	
 
 	if (PlayerStateWidgetClass)
 	{
@@ -73,8 +75,12 @@ void AMyPlayerController::SetupInputComponent()
 			EnhancedInput->BindAction(MoveRightAction,ETriggerEvent::Triggered,this,&AMyPlayerController::BroadCastMoveRight);
 		if (JumpAction)
 			EnhancedInput->BindAction(JumpAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastJump);
+		
 		if (Attack_UAction)
 			EnhancedInput->BindAction(Attack_UAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastAttack_U);
+		if (Attack_JAction)
+			EnhancedInput->BindAction(Attack_JAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastAttack_J);
+
 		if (OpenBackpackAction)
 			EnhancedInput->BindAction(OpenBackpackAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastOpenBackpack);
 		if (OpenSettingAction)
@@ -130,6 +136,7 @@ void AMyPlayerController::BroadCastAttack_U(const FInputActionInstance& Instance
 	AMyGameMode* GameMode = Cast<AMyGameMode>(GetWorld()->GetAuthGameMode());
 
 	AMyPaperZDCharacter* MyCharacter = Cast<AMyPaperZDCharacter>(GetCharacter());
+	
 	if (MyCharacter)
 	{
 		if (MyCharacter->AnimRight == false) return;
@@ -143,6 +150,21 @@ void AMyPlayerController::BroadCastAttack_U(const FInputActionInstance& Instance
 		}
 	}
 }
+
+void AMyPlayerController::BroadCastAttack_J(const struct FInputActionInstance& Instance)
+{
+	AMyGameMode* GameMode = Cast<AMyGameMode>(GetWorld()->GetAuthGameMode());
+
+	if (GameMode)
+	{
+		if (GameMode->Attack_J.IsBound())
+		{
+			GameMode->Attack_J.Broadcast();
+		}
+	}
+}
+
+
 
 void AMyPlayerController::BroadCastOpenBackpack(const FInputActionInstance& Instance)
 {

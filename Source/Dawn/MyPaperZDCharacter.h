@@ -81,4 +81,29 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float Attack = 10;
+
+	UFUNCTION(BlueprintCallable)
+	void Attack_J();
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	TArray<bool> bAttack_J;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FName StateMachineName = "Locomotion";
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FName Attack_J_1AnimNodeName = "Attack_J_1";
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FName Attack_J_2AnimNodeName = "Attack_J_2";
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FName Attack_J_3AnimNodeName = "Attack_J_3";
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FTimerHandle TimerHandle;
+	void ChangebAttack_J_1()
+	{
+		bAttack_J[0] = false;
+	}
+	void ChangebAttack_J_2()
+	{
+		bAttack_J[1] = false;
+	}
 };
