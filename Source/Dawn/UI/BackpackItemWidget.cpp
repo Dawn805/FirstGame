@@ -18,3 +18,8 @@ void UBackpackItemWidget::SetItemWidget(FBackpackItems& Item)
 		ItemQuantity->SetText(FText::AsNumber(Item.ItemQuantity));
 
 }
+
+void UBackpackItemWidget::SetSelectedItem(const FBackpackItems& NewItem)
+{
+	CurrentSelectedItem = NewItem;
+}

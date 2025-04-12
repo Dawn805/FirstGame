@@ -32,6 +32,7 @@ EBTNodeResult::Type UTask_EnemyAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 	
 	AMyPaperZDCharacter* PlayerActor = nullptr;
 	for (TActorIterator<AMyPaperZDCharacter> It(GetWorld());It;++It)
+		
 	{
 		PlayerActor = *It;
 		break;

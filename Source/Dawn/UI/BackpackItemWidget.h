@@ -28,4 +28,10 @@ public:
 	//设置UI
 	UFUNCTION(BlueprintCallable)
 	void SetItemWidget(FBackpackItems& Item);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FBackpackItems CurrentSelectedItem;
+
+	UFUNCTION(BlueprintCallable)
+	void SetSelectedItem(const FBackpackItems& NewItem);
 };
