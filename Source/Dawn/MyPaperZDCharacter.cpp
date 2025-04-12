@@ -104,6 +104,7 @@ void AMyPaperZDCharacter::OnComponentBeginOverlap(UPrimitiveComponent* Overlappe
 //打开关闭背包
 void AMyPaperZDCharacter::OpenBackpack()
 {
+	AMyPlayerController* MyPlayerController = Cast<AMyPlayerController>(GetController());
 	if (!BackpackWidgetInstance)
 	{
 		BackpackWidgetInstance = CreateWidget<UBackpackWidget>(GetWorld(),BackpackWidgetClass);
@@ -111,6 +112,9 @@ void AMyPaperZDCharacter::OpenBackpack()
 		{
 			BackpackWidgetInstance->SetBackpack(this);
 			BackpackWidgetInstance->AddToViewport();
+			
+			MyPlayerController->bShowMouseCursor = true;
+			MyPlayerController->SetPause(true);
 		}
 	}
 	else
@@ -119,6 +123,9 @@ void AMyPaperZDCharacter::OpenBackpack()
 		{
 			BackpackWidgetInstance->RemoveFromParent();
 			BackpackWidgetInstance = nullptr; // 释放 UI
+
+			MyPlayerController->bShowMouseCursor = false;
+			MyPlayerController->SetPause(false);
 		}
 	}
 }
