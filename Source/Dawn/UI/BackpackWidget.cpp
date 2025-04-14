@@ -29,7 +29,7 @@ void UBackpackWidget::RefreshBackpack()
 		if (ItemWidget)
 		{
 			//传递物品数据
-			ItemWidget->SetItemWidget(Backpack->Item[i],Backpack);
+			ItemWidget->SetItemWidget(Backpack->Item[i],Backpack,this);
 			//添加到网格布局
 			GridPanel->AddChildToUniformGrid(ItemWidget,h,l);
 			h++;

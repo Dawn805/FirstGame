@@ -34,7 +34,7 @@ public:
 
 	//设置UI
 	UFUNCTION(BlueprintCallable)
-	void SetItemWidget(FBackpackItems& Item,UBackpackComponent* InBackpack);
+	void SetItemWidget(FBackpackItems& Item,UBackpackComponent* InBackpack,UBackpackWidget* InBackpackWidget);
 
 
 	UPROPERTY(meta = (BindWidget))
@@ -52,4 +52,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FBackpackItems FItem;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UBackpackWidget* FBackpackWidget;
 };

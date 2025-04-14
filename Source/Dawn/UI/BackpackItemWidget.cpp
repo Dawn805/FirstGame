@@ -12,7 +12,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 
 
-void UBackpackItemWidget::SetItemWidget(FBackpackItems& Item,UBackpackComponent* InBackpack)
+void UBackpackItemWidget::SetItemWidget(FBackpackItems& Item,UBackpackComponent* InBackpack,UBackpackWidget* InBackpackWidget)
 {
 	//设置图标
 	FSlateBrush Brush;
@@ -24,6 +24,7 @@ void UBackpackItemWidget::SetItemWidget(FBackpackItems& Item,UBackpackComponent*
 
 	FItem = Item;
 	FBackpackComponent = InBackpack;
+	FBackpackWidget = InBackpackWidget;
 		
 }
 
@@ -56,7 +57,10 @@ void UBackpackItemWidget::OnUseButtonClicked()
 		{
 			AMyPaperZDCharacter* FCharacter = Cast<AMyPaperZDCharacter>(UGameplayStatics::GetPlayerPawn(this,0));
 			if (FCharacter) FCharacter->HP += 50;
+			if (FCharacter->HP > FCharacter->MaxHP) FCharacter->HP = FCharacter->MaxHP;
 		}
+
+		FBackpackWidget->RefreshBackpack();
 	}
 }
 
