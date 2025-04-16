@@ -4,26 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
+#include "Dawn/Component/BackpackComponent.h"
 #include "MySaveGame.generated.h"
 
 /**
  * 
  */
 
-USTRUCT(BlueprintType)
-struct FBackpackItem
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FName ItemName;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 ItemQuantity;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTexture2D* ItemIcon;
-};
 
 
 UCLASS()
@@ -36,5 +23,8 @@ public:
 	FVector PlayerLocation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FBackpackItem> Backpack;
+	FRotator PlayerRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FBackpackItems> BackpackItems;
 };

@@ -14,18 +14,19 @@ void SavePlayerData(AMyPaperZDCharacter* Player)
 	if (!SaveGameInstance) return;
 
 	SaveGameInstance->PlayerLocation = Player->GetActorLocation();
+	SaveGameInstance->PlayerRotation = Player->GetActorRotation();
 
 	UBackpackComponent* Backpack = Player->Backpack;
 	if (Backpack)
 	{
 		for (auto& item : Backpack->Item)
 		{
-			FBackpackItem SaveItem;
+			FBackpackItems SaveItem;
 			SaveItem.ItemName = item.ItemName;
 			SaveItem.ItemQuantity = item.ItemQuantity;
 			SaveItem.ItemIcon = item.ItemIcon;
 
-			SaveGameInstance->Backpack.Add(SaveItem);
+			SaveGameInstance->BackpackItems.Add(SaveItem);
 		}
 	}
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance,TEXT("PlayerSave"),0);
@@ -41,12 +42,13 @@ void LoadPlayerData(AMyPaperZDCharacter* Player)
 		if (!LoadedGame) return;
 
 		Player->SetActorLocation(LoadedGame->PlayerLocation);
+		Player->SetActorRotation(LoadedGame->PlayerRotation);
 
 		UBackpackComponent* Backpack = Player->Backpack;
 		if (Backpack)
 		{
 			Backpack->Item.Empty();
-			for (auto& item : LoadedGame->Backpack)
+			for (auto& item : LoadedGame->BackpackItems)
 			{
 				FBackpackItems NewItem;
 				NewItem.ItemName = item.ItemName;
@@ -56,5 +58,8 @@ void LoadPlayerData(AMyPaperZDCharacter* Player)
 				Backpack->Item.Add(NewItem);
 			}
 		}
+
+		Player->MP = Player->MaxMP;
+		Player->HP = Player->MaxHP;
 	}
 }
