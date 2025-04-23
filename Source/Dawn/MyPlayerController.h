@@ -6,6 +6,9 @@
 #include "UI/SettingWidget.h"
 #include "Containers/Array.h"
 
+#include "Save/RestPoint.h"
+#include "Save/MySaveGame.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "MyPlayerController.generated.h"
@@ -46,6 +49,11 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UInputAction* OpenSettingAction;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UInputAction* SaveGameAction;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UInputAction* LoadGameAction;
+
 	void BroadCastMoveRight(const struct FInputActionInstance& Instance);
 	void BroadCastJump(const struct FInputActionInstance& Instance);
 	
@@ -55,6 +63,9 @@ public:
 	
 	void BroadCastOpenBackpack(const struct FInputActionInstance& Instance);
 	void OpenSettingUI(const struct FInputActionInstance& Instance);
+
+	void SaveGame(const struct FInputActionInstance& Instance);
+	void LoadGame(const struct FInputActionInstance& Instance);
 	
 	
 

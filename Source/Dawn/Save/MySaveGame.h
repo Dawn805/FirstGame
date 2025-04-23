@@ -28,3 +28,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FBackpackItems> BackpackItems;
 };
+
+class AMyPaperZDCharacter;
+void SavePlayerData(AMyPaperZDCharacter* Player);
+void LoadPlayerData(AMyPaperZDCharacter* Player);

@@ -87,6 +87,10 @@ void AMyPlayerController::SetupInputComponent()
 			EnhancedInput->BindAction(OpenBackpackAction,ETriggerEvent::Started,this,&AMyPlayerController::BroadCastOpenBackpack);
 		if (OpenSettingAction)
 			EnhancedInput->BindAction(OpenSettingAction,ETriggerEvent::Started,this,&AMyPlayerController::OpenSettingUI);
+		if (SaveGameAction)
+			EnhancedInput->BindAction(SaveGameAction,ETriggerEvent::Started,this,&AMyPlayerController::SaveGame);
+		if (LoadGameAction)
+			EnhancedInput->BindAction(LoadGameAction,ETriggerEvent::Started,this,&AMyPlayerController::LoadGame);
 	}
 }
 
@@ -227,6 +231,24 @@ void AMyPlayerController::OpenSettingUI(const FInputActionInstance& Instance)
 
 			SetPause(false);
 		}
+	}
+}
+
+void AMyPlayerController::SaveGame(const struct FInputActionInstance& Instance)
+{
+	AMyPaperZDCharacter* MyCharacter = Cast<AMyPaperZDCharacter>(GetCharacter());
+	if (MyCharacter)
+	{
+		SavePlayerData(MyCharacter);
+	}
+}
+
+void AMyPlayerController::LoadGame(const struct FInputActionInstance& Instance)
+{
+	AMyPaperZDCharacter* MyCharacter = Cast<AMyPaperZDCharacter>(GetCharacter());
+	if (MyCharacter)
+	{
+		LoadPlayerData(MyCharacter);
 	}
 }
 

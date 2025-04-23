@@ -112,4 +112,7 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FName Attack_IAnimNodeName = "Attack_I";
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	bool bIsOverlapping = false;
 };
