@@ -4,21 +4,22 @@
 #include "RestPoint.h"
 
 #include "Dawn/MyPaperZDCharacter.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 
 // Sets default values
 ARestPoint::ARestPoint()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	SpriteComp = CreateDefaultSubobject<UPaperSpriteComponent>("Sprite");
 	RootComponent = SpriteComp;
+	BoxComp = CreateDefaultSubobject<UBoxComponent>("Box");
 
 	if (BoxComp)
 	{
 		BoxComp->OnComponentBeginOverlap.AddDynamic(this,&ARestPoint::OnBoxBeginOverlap);
-		BoxComp->OnComponentEndOverlap.AddDynamic(this,&ARestPoint::OnBoxEndOverlap);
 	}
 }
 
@@ -41,6 +42,7 @@ void ARestPoint::OnBoxBeginOverlap(UPrimitiveComponent* PrimitiveComponent, AAct
 	{
 		AMyPaperZDCharacter* MyCharacter = Cast<AMyPaperZDCharacter>(Actor);
 		MyCharacter->bIsOverlapping = true;
+		UKismetSystemLibrary::PrintString(this,"Yes Cundangpoint");
 	}
 }
 
@@ -52,7 +54,6 @@ void ARestPoint::OnBoxEndOverlap(UPrimitiveComponent* PrimitiveComponent, AActor
 		MyCharacter->bIsOverlapping = false;
 	}
 }
-
 
 
 

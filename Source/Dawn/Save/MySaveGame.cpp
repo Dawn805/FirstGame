@@ -3,6 +3,7 @@
 
 #include "MySaveGame.h"
 
+#include "AITestsCommon.h"
 #include "Dawn/MyPaperZDCharacter.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -15,6 +16,10 @@ void SavePlayerData(AMyPaperZDCharacter* Player)
 
 	SaveGameInstance->PlayerLocation = Player->GetActorLocation();
 	SaveGameInstance->PlayerRotation = Player->GetActorRotation();
+	
+	FName name = FName(Player->GetWorld()->GetMapName());
+	SaveGameInstance->LevelName = name;
+
 
 	UBackpackComponent* Backpack = Player->Backpack;
 	if (Backpack)
@@ -40,6 +45,14 @@ void LoadPlayerData(AMyPaperZDCharacter* Player)
 	{
 		UMySaveGame* LoadedGame = Cast<UMySaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("PlayerSave"), 0));
 		if (!LoadedGame) return;
+
+		FName name = FName(Player->GetWorld()->GetMapName());
+
+		if (name != LoadedGame->LevelName)
+		{
+			UGameplayStatics::OpenLevel(Player, LoadedGame->LevelName);
+			return;
+		}
 
 		Player->SetActorLocation(LoadedGame->PlayerLocation);
 		Player->SetActorRotation(LoadedGame->PlayerRotation);

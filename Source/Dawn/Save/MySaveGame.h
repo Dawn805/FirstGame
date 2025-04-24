@@ -27,6 +27,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FBackpackItems> BackpackItems;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName LevelName;
 };
 
 class AMyPaperZDCharacter;

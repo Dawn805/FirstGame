@@ -237,9 +237,11 @@ void AMyPlayerController::OpenSettingUI(const FInputActionInstance& Instance)
 void AMyPlayerController::SaveGame(const struct FInputActionInstance& Instance)
 {
 	AMyPaperZDCharacter* MyCharacter = Cast<AMyPaperZDCharacter>(GetCharacter());
-	if (MyCharacter)
+	if (MyCharacter && MyCharacter->bIsOverlapping == true)
 	{
 		SavePlayerData(MyCharacter);
+
+		UKismetSystemLibrary::PrintString(this,"Yes Cundang");
 	}
 }
 

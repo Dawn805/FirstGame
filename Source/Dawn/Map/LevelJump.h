@@ -6,20 +6,18 @@
 #include "PaperSpriteComponent.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
-#include "RestPoint.generated.h"
+#include "LevelJump.generated.h"
 
 UCLASS()
-class DAWN_API ARestPoint : public AActor
+class DAWN_API ALevelJump : public AActor
 {
 	GENERATED_BODY()
 
 public:
 	UFUNCTION()
-	void OnBoxBeginOverlap(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, UPrimitiveComponent* PrimitiveComponent1, int I, bool bArg, const FHitResult& HitResult);
-	UFUNCTION()
-	void OnBoxEndOverlap(UPrimitiveComponent* PrimitiveComponent, AActor* Actor, UPrimitiveComponent* PrimitiveComponent1, int I);
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	// Sets default values for this actor's properties
-	ARestPoint();
+	ALevelJump();
 
 protected:
 	// Called when the game starts or when spawned
@@ -29,13 +27,14 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UPaperSpriteComponent* SpriteComp;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	UBoxComponent* BoxComp;
-
-	// UPROPERTY()
-	// bool bIsOverlapping = false;
-	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FName JumpLevelName = "No";
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FName OldLevelName = "No";
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FVector NewLocation;
 };
