@@ -16,7 +16,7 @@ ARestPoint::ARestPoint()
 	SpriteComp = CreateDefaultSubobject<UPaperSpriteComponent>("Sprite");
 	RootComponent = SpriteComp;
 	BoxComp = CreateDefaultSubobject<UBoxComponent>("Box");
-
+	BoxComp->SetupAttachment(SpriteComp); 
 	if (BoxComp)
 	{
 		BoxComp->OnComponentBeginOverlap.AddDynamic(this,&ARestPoint::OnBoxBeginOverlap);
