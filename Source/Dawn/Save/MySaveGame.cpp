@@ -3,7 +3,6 @@
 
 #include "MySaveGame.h"
 
-#include "AITestsCommon.h"
 #include "Dawn/MyPaperZDCharacter.h"
 #include "Kismet/GameplayStatics.h"
 

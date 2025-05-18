@@ -4,8 +4,6 @@
 #include "Task_EnemyAttack.h"
 
 #include "AIController.h"
-#include "AITestsCommon.h"
-#include "AITestsCommon.h"
 #include "EngineUtils.h"
 #include "PaperZDAnimInstance.h"
 #include "BehaviorTree/BlackboardComponent.h"

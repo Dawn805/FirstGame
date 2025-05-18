@@ -3,7 +3,6 @@
 
 #include "LevelJump.h"
 
-#include "FunctionalUIScreenshotTest.h"
 #include "PaperSpriteComponent.h"
 #include "Dawn/MyPaperZDCharacter.h"
 #include "Kismet/GameplayStatics.h"
