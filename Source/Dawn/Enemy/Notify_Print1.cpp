@@ -7,6 +7,6 @@
 
 void UNotify_Print1::OnNotifyBegin_Implementation(UPaperZDAnimInstance* OwningInstance) const
 {
-	UKismetSystemLibrary::PrintString(this,"It's OK");
+	// UKismetSystemLibrary::PrintString(...);(this,"It's OK");
 }
 

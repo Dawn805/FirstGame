@@ -3,7 +3,7 @@
 
 #include "BackpackWidget.h"
 #include "../MyPaperZDCharacter.h"
-#include "IDetailTreeNode.h"
+//#include "IDetailTreeNode.h"
 
 void UBackpackWidget::SetBackpack(AMyPaperZDCharacter* Character)
 {

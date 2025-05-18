@@ -3,7 +3,7 @@
 
 #include "MyPaperZDCharacter.h"
 
-#include "IDetailTreeNode.h"
+//#include "IDetailTreeNode.h"
 #include "MyGameMode.h"
 #include "MyPlayerController.h"
 #include "PaperFlipbookComponent.h"
@@ -85,13 +85,13 @@ void AMyPaperZDCharacter::MoveJump()
 void AMyPaperZDCharacter::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent,AActor* OtherActor,
 		UPrimitiveComponent* OtherComp,int32 OtherBodyIndex,bool FromSweep,const FHitResult& SweepResult)
 {
-	UKismetSystemLibrary::PrintString(this,"yesyouget");
+	// UKismetSystemLibrary::PrintString(...);(this,"yesyouget");
 
 	
 	AItem* Items = Cast<AItem>(OtherActor);
 	if (Items)
 	{
-		UKismetSystemLibrary::PrintString(this,"拾取物品!");
+		// UKismetSystemLibrary::PrintString(...);(this,"拾取物品!");
 		FBackpackItems BackpackItems;
 		BackpackItems.ItemName = Items->ItemName;
 		BackpackItems.ItemIcon = Items->ItemIcon;
@@ -134,12 +134,12 @@ void AMyPaperZDCharacter::Attack_J()
 	AMyPlayerController* PlayerController = Cast<AMyPlayerController>(this->GetController());
 	if (!PlayerController) return;
 
-	UKismetSystemLibrary::PrintString(this,"Key_J is Ok");
+	// UKismetSystemLibrary::PrintString(...);(this,"Key_J is Ok");
 	
 	UPaperZDAnimInstance* PaperZdAnimInstance = this->GetAnimInstance();
 	if (!PaperZdAnimInstance) return;
 
-	UKismetSystemLibrary::PrintString(this,"PLayerAnim_J is Ok");
+	// UKismetSystemLibrary::PrintString(...);(this,"PLayerAnim_J is Ok");
 	
 	if (bAttack_J[1] == true && AnimRight == true)
 	{
@@ -148,7 +148,7 @@ void AMyPaperZDCharacter::Attack_J()
      			bAttack_J[i] = false;
      		}
 		PaperZdAnimInstance->JumpToNode(Attack_J_3AnimNodeName,StateMachineName);
-		UKismetSystemLibrary::PrintString(this,"J_3 is Ok");
+		// UKismetSystemLibrary::PrintString(...);(this,"J_3 is Ok");
 		
 		return;
 	}
@@ -159,7 +159,7 @@ void AMyPaperZDCharacter::Attack_J()
 		bAttack_J[1] = true;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&AMyPaperZDCharacter::ChangebAttack_J_2,2,false);
 
-		UKismetSystemLibrary::PrintString(this,"J_2 is Ok");
+		// UKismetSystemLibrary::PrintString(...);(this,"J_2 is Ok");
 	
 		return;
 	}
@@ -171,7 +171,7 @@ void AMyPaperZDCharacter::Attack_J()
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle,this,&AMyPaperZDCharacter::ChangebAttack_J_1,2,false);
 	}
 
-	UKismetSystemLibrary::PrintString(this,"J_1 is Ok");
+	// UKismetSystemLibrary::PrintString(...);(this,"J_1 is Ok");
 }
 
 void AMyPaperZDCharacter::Attack_I()

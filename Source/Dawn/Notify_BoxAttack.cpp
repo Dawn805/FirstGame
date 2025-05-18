@@ -58,11 +58,11 @@ void UNotify_BoxAttack::OnReceiveNotify_Implementation(UPaperZDAnimInstance* Ani
 		if (SocketName == "No")
 		{
 			Location = SequenceRenderComponent->GetComponentLocation();
-			//UKismetSystemLibrary::PrintString(this,"NoSocketName");
+			//// UKismetSystemLibrary::PrintString(...);(this,"NoSocketName");
 		}
 		else
 		{
-			//UKismetSystemLibrary::PrintString(this,"YesSocketName");
+			//// UKismetSystemLibrary::PrintString(...);(this,"YesSocketName");
 		}
 		bool bHit = UKismetSystemLibrary::BoxOverlapActors(
 			//1世界
@@ -89,18 +89,18 @@ void UNotify_BoxAttack::OnReceiveNotify_Implementation(UPaperZDAnimInstance* Ani
 				if (OverlapActor)
 				{
 					//UGameplayStatics::ApplyDamage(OverlapActor,AttackDamage,OwningActor->GetInstigatorController(),OwningActor,nullptr);
-					//UKismetSystemLibrary::PrintString(this,"Hit Yes");
+					//// UKismetSystemLibrary::PrintString(...);(this,"Hit Yes");
 
 					AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(OverlapActor);
 					EnemyCharacter->Health -= AttackDamage * Attack_default;
 
 					if (EnemyCharacter->Health <= 0) EnemyCharacter->EndAI();
 
-					UKismetSystemLibrary::PrintString(this,FString::Printf(TEXT("敌人生命值：%.2f"),EnemyCharacter->Health));
+					// UKismetSystemLibrary::PrintString(...);(this,FString::Printf(TEXT("敌人生命值：%.2f"),EnemyCharacter->Health));
 				}
 				else
 				{
-					//UKismetSystemLibrary::PrintString(this,"Hit No");
+					//// UKismetSystemLibrary::PrintString(...);(this,"Hit No");
 				}
 			}
 		}

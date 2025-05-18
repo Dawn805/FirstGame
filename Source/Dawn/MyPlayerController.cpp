@@ -241,7 +241,7 @@ void AMyPlayerController::SaveGame(const struct FInputActionInstance& Instance)
 	{
 		SavePlayerData(MyCharacter);
 
-		UKismetSystemLibrary::PrintString(this,"Yes Cundang");
+		// UKismetSystemLibrary::PrintString(...);(this,"Yes Cundang");
 	}
 }
 

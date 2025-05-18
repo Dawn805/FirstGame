@@ -3,7 +3,7 @@
 
 #include "BackpackComponent.h"
 
-#include "IDetailTreeNode.h"
+//#include "IDetailTreeNode.h"
 
 
 // Sets default values for this component's properties

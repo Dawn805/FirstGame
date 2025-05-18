@@ -49,7 +49,7 @@ void UBackpackItemWidget::OnMainButtonClicked()
 
 void UBackpackItemWidget::OnUseButtonClicked()
 {
-	UKismetSystemLibrary::PrintString(this,"11111111");
+	// UKismetSystemLibrary::PrintString(...);(this,"11111111");
 	if (FBackpackComponent)
 	{
 		FBackpackComponent->UseItem(FItem,1);

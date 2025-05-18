@@ -42,7 +42,7 @@ void ARestPoint::OnBoxBeginOverlap(UPrimitiveComponent* PrimitiveComponent, AAct
 	{
 		AMyPaperZDCharacter* MyCharacter = Cast<AMyPaperZDCharacter>(Actor);
 		MyCharacter->bIsOverlapping = true;
-		UKismetSystemLibrary::PrintString(this,"Yes Cundangpoint");
+		// UKismetSystemLibrary::PrintString(...);(this,"Yes Cundangpoint");
 	}
 }
 

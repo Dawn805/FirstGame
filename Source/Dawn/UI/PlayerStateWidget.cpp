@@ -45,7 +45,7 @@ void UPlayerStateWidget::Update()
 		// FVector2D NewSize2 = FVector2D(FMath::Clamp(MainPaperZDCharacter->MP / MainPaperZDCharacter->MaxMP, 0.0f, 1.0f) * MaxMagicBarWidth, MagicImage->GetDesiredSize().Y);
 		// MagicImage->SetDesiredSizeOverride(NewSize2);
 		//
-		// UKismetSystemLibrary::PrintString(this, FString::Printf(TEXT("HP比例：%.2f"), MainPaperZDCharacter->HP / MainPaperZDCharacter->MaxHP));
+		// // UKismetSystemLibrary::PrintString(...);(this, FString::Printf(TEXT("HP比例：%.2f"), MainPaperZDCharacter->HP / MainPaperZDCharacter->MaxHP));
 
 	}
 }
